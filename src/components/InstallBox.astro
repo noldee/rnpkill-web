@@ -1,39 +1,34 @@
 <section class="pb-16 px-6 max-w-xl mx-auto">
   <div class="bg-zinc-950 border border-zinc-800/80 rounded-xl p-1.5 shadow-sm">
-    <!-- Pestañas -->
+    <!-- Tabs -->
     <div
-      class="flex items-center gap-1 border-b border-zinc-900 pb-1.5 px-1.5 mb-1.5"
+      class="flex items-center gap-1 border-b border-zinc-900 pb-1.5 px-1.5 mb-1.5 overflow-x-auto"
     >
       <button
-        class="tab-btn px-2.5 py-1 text-xs font-mono rounded bg-zinc-900 text-zinc-200 transition"
-        data-cmd="npm install -g rnpkill">npm</button
+        class="tab-btn px-2.5 py-1 text-xs font-mono rounded bg-zinc-900 text-zinc-200 transition whitespace-nowrap"
+        data-os="macos">macOS & Linux</button
       >
       <button
-        class="tab-btn px-2.5 py-1 text-xs font-mono rounded text-zinc-500 hover:text-zinc-300 transition"
-        data-cmd="pnpm add -g rnpkill">pnpm</button
-      >
-      <button
-        class="tab-btn px-2.5 py-1 text-xs font-mono rounded text-zinc-500 hover:text-zinc-300 transition"
-        data-cmd="yarn global add rnpkill">yarn</button
-      >
-      <button
-        class="tab-btn px-2.5 py-1 text-xs font-mono rounded text-zinc-500 hover:text-zinc-300 transition"
-        data-cmd="bun add -g rnpkill">bun</button
+        class="tab-btn px-2.5 py-1 text-xs font-mono rounded text-zinc-500 hover:text-zinc-300 transition whitespace-nowrap"
+        data-os="windows">Windows</button
       >
     </div>
 
-    <!-- Bloque de Código -->
+    <!-- Code Block -->
     <div
-      class="bg-zinc-900/60 rounded-lg px-3.5 py-3 font-mono text-xs flex items-center justify-between border border-zinc-800/40"
+      class="bg-zinc-900/60 rounded-lg px-3.5 py-3 font-mono text-xs flex items-center justify-between gap-3 border border-zinc-800/40"
     >
-      <span id="active-cmd" class="text-zinc-200 select-all"
-        >npm install -g rnpkill</span
+      <span
+        id="active-cmd"
+        class="text-zinc-200 select-all break-all leading-relaxed"
+        >curl -fsSL
+        https://raw.githubusercontent.com/noldee/rnpkill/main/install.sh | bash</span
       >
       <button
         id="copy-btn"
-        class="text-zinc-400 hover:text-zinc-100 text-xs px-2 py-1 rounded bg-zinc-800/50 hover:bg-zinc-800 transition active:scale-95"
+        class="text-zinc-400 hover:text-zinc-100 text-xs px-2.5 py-1 rounded bg-zinc-800/50 hover:bg-zinc-800 transition active:scale-95 shrink-0"
       >
-        <span id="copy-label">Copiar</span>
+        <span id="copy-label">Copy</span>
       </button>
     </div>
   </div>
@@ -45,7 +40,14 @@
   const copyBtn = document.getElementById("copy-btn");
   const copyLabel = document.getElementById("copy-label");
 
-  let currentCommand = "npm install -g rnpkill";
+  const commands: Record<string, string> = {
+    macos:
+      "curl -fsSL https://raw.githubusercontent.com/noldee/rnpkill/main/install.sh | bash",
+    windows:
+      'powershell -c "irm https://raw.githubusercontent.com/noldee/rnpkill/main/install.ps1 | iex"',
+  };
+
+  let currentOS = "macos";
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -56,17 +58,17 @@
       btn.classList.add("bg-zinc-900", "text-zinc-200");
       btn.classList.remove("text-zinc-500");
 
-      currentCommand = btn.getAttribute("data-cmd") || "";
-      if (activeCmdSpan) activeCmdSpan.innerText = currentCommand;
+      currentOS = btn.getAttribute("data-os") || "macos";
+      if (activeCmdSpan) activeCmdSpan.innerText = commands[currentOS];
     });
   });
 
   copyBtn?.addEventListener("click", async () => {
-    await navigator.clipboard.writeText(currentCommand);
+    await navigator.clipboard.writeText(commands[currentOS]);
     if (copyLabel) {
-      copyLabel.innerText = "Copiado";
+      copyLabel.innerText = "Copied";
       setTimeout(() => {
-        copyLabel.innerText = "Copiar";
+        copyLabel.innerText = "Copy";
       }, 1500);
     }
   });
