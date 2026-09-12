@@ -1,0 +1,73 @@
+<section class="pb-16 px-6 max-w-xl mx-auto">
+  <div class="bg-zinc-950 border border-zinc-800/80 rounded-xl p-1.5 shadow-sm">
+    <!-- Pestañas -->
+    <div
+      class="flex items-center gap-1 border-b border-zinc-900 pb-1.5 px-1.5 mb-1.5"
+    >
+      <button
+        class="tab-btn px-2.5 py-1 text-xs font-mono rounded bg-zinc-900 text-zinc-200 transition"
+        data-cmd="npm install -g rnpkill">npm</button
+      >
+      <button
+        class="tab-btn px-2.5 py-1 text-xs font-mono rounded text-zinc-500 hover:text-zinc-300 transition"
+        data-cmd="pnpm add -g rnpkill">pnpm</button
+      >
+      <button
+        class="tab-btn px-2.5 py-1 text-xs font-mono rounded text-zinc-500 hover:text-zinc-300 transition"
+        data-cmd="yarn global add rnpkill">yarn</button
+      >
+      <button
+        class="tab-btn px-2.5 py-1 text-xs font-mono rounded text-zinc-500 hover:text-zinc-300 transition"
+        data-cmd="bun add -g rnpkill">bun</button
+      >
+    </div>
+
+    <!-- Bloque de Código -->
+    <div
+      class="bg-zinc-900/60 rounded-lg px-3.5 py-3 font-mono text-xs flex items-center justify-between border border-zinc-800/40"
+    >
+      <span id="active-cmd" class="text-zinc-200 select-all"
+        >npm install -g rnpkill</span
+      >
+      <button
+        id="copy-btn"
+        class="text-zinc-400 hover:text-zinc-100 text-xs px-2 py-1 rounded bg-zinc-800/50 hover:bg-zinc-800 transition active:scale-95"
+      >
+        <span id="copy-label">Copiar</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
+  const activeCmdSpan = document.getElementById("active-cmd");
+  const copyBtn = document.getElementById("copy-btn");
+  const copyLabel = document.getElementById("copy-label");
+
+  let currentCommand = "npm install -g rnpkill";
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => {
+        b.classList.remove("bg-zinc-900", "text-zinc-200");
+        b.classList.add("text-zinc-500");
+      });
+      btn.classList.add("bg-zinc-900", "text-zinc-200");
+      btn.classList.remove("text-zinc-500");
+
+      currentCommand = btn.getAttribute("data-cmd") || "";
+      if (activeCmdSpan) activeCmdSpan.innerText = currentCommand;
+    });
+  });
+
+  copyBtn?.addEventListener("click", async () => {
+    await navigator.clipboard.writeText(currentCommand);
+    if (copyLabel) {
+      copyLabel.innerText = "Copiado";
+      setTimeout(() => {
+        copyLabel.innerText = "Copiar";
+      }, 1500);
+    }
+  });
+</script>
