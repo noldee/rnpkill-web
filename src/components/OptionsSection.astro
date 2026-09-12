@@ -1,0 +1,71 @@
+<section id="options" class="py-16 px-6 max-w-4xl mx-auto">
+  <div class="border border-zinc-800 rounded-xl p-6 bg-zinc-950">
+    <h3
+      class="text-sm font-mono text-white mb-6 uppercase tracking-wider font-semibold"
+    >
+      Command-Line Options
+    </h3>
+    <div class="space-y-3 font-mono text-xs">
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-3 border-b border-zinc-900"
+      >
+        <span class="text-white font-medium">[PATH]</span>
+        <span class="text-zinc-400 md:col-span-2"
+          >Root directory to scan (defaults to current directory)</span
+        >
+      </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-3 border-b border-zinc-900"
+      >
+        <span class="text-white font-medium">--max-depth &lt;N&gt;</span>
+        <span class="text-zinc-400 md:col-span-2">Limit recursion depth</span>
+      </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-3 border-b border-zinc-900"
+      >
+        <span class="text-white font-medium">--no-size</span>
+        <span class="text-zinc-400 md:col-span-2"
+          >Skip size measurement for an instant listing</span
+        >
+      </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-3 border-b border-zinc-900"
+      >
+        <span class="text-white font-medium">--older-than &lt;EXPR&gt;</span>
+        <span class="text-zinc-400 md:col-span-2"
+          >Only show folders untouched for at least this long (e.g. 90d, 6m, 1y)</span
+        >
+      </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-3 border-b border-zinc-900"
+      >
+        <span class="text-white font-medium">--dry-run</span>
+        <span class="text-zinc-400 md:col-span-2"
+          >Show what would be deleted without deleting anything</span
+        >
+      </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-3 border-b border-zinc-900"
+      >
+        <span class="text-white font-medium">--report &lt;PATH&gt;</span>
+        <span class="text-zinc-400 md:col-span-2"
+          >Export results to a .json or .csv file</span
+        >
+      </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-3 border-b border-zinc-900"
+      >
+        <span class="text-white font-medium">--include-generic</span>
+        <span class="text-zinc-400 md:col-span-2"
+          >Also detect dist, build, bin, obj, out (off by default)</span
+        >
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <span class="text-white font-medium">--theme &lt;NAME&gt;</span>
+        <span class="text-zinc-400 md:col-span-2"
+          >UI theme: default, dracula, mono, gruvbox, onedark, ayu</span
+        >
+      </div>
+    </div>
+  </div>
+</section>

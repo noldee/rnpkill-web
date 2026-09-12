@@ -1,121 +1,63 @@
 <section id="features" class="py-16 px-6 max-w-4xl mx-auto">
-  <h2 class="text-xl font-semibold text-zinc-100 mb-8 text-center">
-    Everything you need to reclaim disk space
+  <h2 class="text-2xl font-bold text-white mb-3 text-center tracking-tight">
+    Engineered for absolute performance
   </h2>
+  <p class="text-sm text-zinc-400 text-center mb-12 max-w-lg mx-auto">
+    Everything you need to keep your disk clean across JavaScript, Python, Rust,
+    Go, and more.
+  </p>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-    <div class="border border-zinc-800/80 rounded-xl p-5 bg-zinc-950/40">
-      <div class="text-zinc-200 font-medium text-sm mb-1">
-        Multi-Ecosystem Support
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="border border-zinc-800 rounded-xl p-6 bg-zinc-900/40">
+      <div
+        class="text-white font-semibold text-sm mb-2 flex items-center gap-2"
+      >
+        <span>⚡</span> Parallel Size Measurement
       </div>
       <p class="text-xs text-zinc-400 leading-relaxed">
-        Targets not just JavaScript (<code class="font-mono text-zinc-300"
-          >node_modules</code
-        >, <code class="font-mono text-zinc-300">.next</code>), but also Python
-        (<code class="font-mono text-zinc-300">.venv</code>, <code
-          class="font-mono text-zinc-300">__pycache__</code
-        >), Rust (<code class="font-mono text-zinc-300">target</code>), Gradle,
-        and Go.
+        Powered by Rayon to scan and measure huge directory trees concurrently
+        without blocking your terminal.
       </p>
     </div>
-    <div class="border border-zinc-800/80 rounded-xl p-5 bg-zinc-950/40">
-      <div class="text-zinc-200 font-medium text-sm mb-1">
-        Collapsible Tree UI & Themes
+    <div class="border border-zinc-800 rounded-xl p-6 bg-zinc-900/40">
+      <div
+        class="text-white font-semibold text-sm mb-2 flex items-center gap-2"
+      >
+        <span>🎯</span> Smart Pruning
       </div>
       <p class="text-xs text-zinc-400 leading-relaxed">
-        Navigate smoothly with a rich terminal interface. Customize your setup
-        with themes like Catppuccin, One Dark, Dracula, and Gruvbox.
+        Never descends into detected target folders, ensuring massive <code
+          class="font-mono text-zinc-200">node_modules</code
+        > don't slow down the scan.
       </p>
     </div>
-    <div class="border border-zinc-800/80 rounded-xl p-5 bg-zinc-950/40">
-      <div class="text-zinc-200 font-medium text-sm mb-1">
-        Age Filters & Dry Runs
+    <div class="border border-zinc-800 rounded-xl p-6 bg-zinc-900/40">
+      <div
+        class="text-white font-semibold text-sm mb-2 flex items-center gap-2"
+      >
+        <span>🛡️</span> Safe by Default
       </div>
       <p class="text-xs text-zinc-400 leading-relaxed">
-        Filter directories untouched for months using <code
-          class="font-mono text-zinc-300">--older-than 90d</code
-        > or preview cleanups safely via <code class="font-mono text-zinc-300"
-          >--dry-run</code
+        Ambiguous folders like <code class="font-mono text-zinc-200">dist</code
+        >, <code class="font-mono text-zinc-200">build</code>, and <code
+          class="font-mono text-zinc-200">bin</code
+        > are opt-in only via <code class="font-mono text-zinc-200"
+          >--include-generic</code
+        > to protect production files.
+      </p>
+    </div>
+    <div class="border border-zinc-800 rounded-xl p-6 bg-zinc-900/40">
+      <div
+        class="text-white font-semibold text-sm mb-2 flex items-center gap-2"
+      >
+        <span>🎨</span> Themes & Filters
+      </div>
+      <p class="text-xs text-zinc-400 leading-relaxed">
+        Choose from built-in themes (Dracula, Ayu, Gruvbox, Mono) and filter
+        directories untouched for months with <code
+          class="font-mono text-zinc-200">--older-than</code
         >.
       </p>
-    </div>
-    <div class="border border-zinc-800/80 rounded-xl p-5 bg-zinc-950/40">
-      <div class="text-zinc-200 font-medium text-sm mb-1">
-        History & Reports
-      </div>
-      <p class="text-xs text-zinc-400 leading-relaxed">
-        Keep track of your freed space over time, view past cleanup statistics,
-        and export detailed JSON or CSV session reports.
-      </p>
-    </div>
-  </div>
-
-  <!-- Sección de Opciones / CLI Reference -->
-  <div class="border border-zinc-800/80 rounded-xl p-6 bg-zinc-950/40">
-    <h3 class="text-sm font-mono text-zinc-200 mb-4 uppercase tracking-wider">
-      Command-Line Options
-    </h3>
-    <div class="space-y-3 font-mono text-xs">
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-2 border-b border-zinc-900"
-      >
-        <span class="text-zinc-200 font-medium">path</span>
-        <span class="text-zinc-400 md:col-span-2"
-          >Root directory to scan (default: current dir)</span
-        >
-      </div>
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-2 border-b border-zinc-900"
-      >
-        <span class="text-zinc-200 font-medium">--max-depth N</span>
-        <span class="text-zinc-400 md:col-span-2">Limit recursion depth</span>
-      </div>
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-2 border-b border-zinc-900"
-      >
-        <span class="text-zinc-200 font-medium">--no-size</span>
-        <span class="text-zinc-400 md:col-span-2"
-          >Skip size measurement for instant listings</span
-        >
-      </div>
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-2 border-b border-zinc-900"
-      >
-        <span class="text-zinc-200 font-medium">--older-than X</span>
-        <span class="text-zinc-400 md:col-span-2"
-          >Only target folders untouched for X (e.g. 90d, 6m, 1y)</span
-        >
-      </div>
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-2 border-b border-zinc-900"
-      >
-        <span class="text-zinc-200 font-medium">--dry-run</span>
-        <span class="text-zinc-400 md:col-span-2"
-          >Simulate removal without deleting files</span
-        >
-      </div>
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-2 border-b border-zinc-900"
-      >
-        <span class="text-zinc-200 font-medium">--report FILE</span>
-        <span class="text-zinc-400 md:col-span-2"
-          >Export a JSON or CSV report of the session</span
-        >
-      </div>
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-2 pb-2 border-b border-zinc-900"
-      >
-        <span class="text-zinc-200 font-medium">--theme NAME</span>
-        <span class="text-zinc-400 md:col-span-2"
-          >UI color theme (one-dark, catppuccin, dracula…)</span
-        >
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
-        <span class="text-zinc-200 font-medium">--history / --stats</span>
-        <span class="text-zinc-400 md:col-span-2"
-          >Show past cleanups and aggregate statistics</span
-        >
-      </div>
     </div>
   </div>
 </section>

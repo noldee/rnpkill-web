@@ -1,32 +1,32 @@
 <section class="pb-16 px-6 max-w-xl mx-auto">
-  <div class="bg-zinc-950 border border-zinc-800/80 rounded-xl p-1.5 shadow-sm">
+  <div class="bg-zinc-900/90 border border-zinc-800 rounded-xl p-1.5 shadow-xl">
     <!-- Tabs -->
     <div
-      class="flex items-center gap-1 border-b border-zinc-900 pb-1.5 px-1.5 mb-1.5 overflow-x-auto"
+      class="flex items-center gap-1 border-b border-zinc-800/80 pb-1.5 px-1.5 mb-1.5"
     >
       <button
-        class="tab-btn px-2.5 py-1 text-xs font-mono rounded bg-zinc-900 text-zinc-200 transition whitespace-nowrap"
+        class="tab-btn px-3 py-1 text-xs font-mono rounded bg-zinc-800 text-white transition whitespace-nowrap cursor-pointer"
         data-os="macos">macOS & Linux</button
       >
       <button
-        class="tab-btn px-2.5 py-1 text-xs font-mono rounded text-zinc-500 hover:text-zinc-300 transition whitespace-nowrap"
+        class="tab-btn px-3 py-1 text-xs font-mono rounded text-zinc-400 hover:text-white transition whitespace-nowrap cursor-pointer"
         data-os="windows">Windows</button
       >
     </div>
 
     <!-- Code Block -->
     <div
-      class="bg-zinc-900/60 rounded-lg px-3.5 py-3 font-mono text-xs flex items-center justify-between gap-3 border border-zinc-800/40"
+      class="bg-black/60 rounded-lg px-4 py-3.5 font-mono text-xs flex items-center justify-between gap-4 border border-zinc-800/50"
     >
       <span
         id="active-cmd"
         class="text-zinc-200 select-all break-all leading-relaxed"
         >curl -fsSL
-        https://raw.githubusercontent.com/noldee/rnpkill/main/install.sh | bash</span
+        https://raw.githubusercontent.com/noldee/rnpkill-rs/main/install.sh | sh</span
       >
       <button
         id="copy-btn"
-        class="text-zinc-400 hover:text-zinc-100 text-xs px-2.5 py-1 rounded bg-zinc-800/50 hover:bg-zinc-800 transition active:scale-95 shrink-0"
+        class="text-zinc-300 hover:text-white text-xs px-3 py-1.5 rounded bg-zinc-800 hover:bg-zinc-700 transition active:scale-95 shrink-0 cursor-pointer font-medium"
       >
         <span id="copy-label">Copy</span>
       </button>
@@ -42,9 +42,9 @@
 
   const commands: Record<string, string> = {
     macos:
-      "curl -fsSL https://raw.githubusercontent.com/noldee/rnpkill/main/install.sh | bash",
+      "curl -fsSL https://raw.githubusercontent.com/noldee/rnpkill-rs/main/install.sh | sh",
     windows:
-      'powershell -c "irm https://raw.githubusercontent.com/noldee/rnpkill/main/install.ps1 | iex"',
+      "iwr https://raw.githubusercontent.com/noldee/rnpkill-rs/main/install.ps1 -useb | iex",
   };
 
   let currentOS = "macos";
@@ -52,11 +52,11 @@
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       buttons.forEach((b) => {
-        b.classList.remove("bg-zinc-900", "text-zinc-200");
-        b.classList.add("text-zinc-500");
+        b.classList.remove("bg-zinc-800", "text-white");
+        b.classList.add("text-zinc-400");
       });
-      btn.classList.add("bg-zinc-900", "text-zinc-200");
-      btn.classList.remove("text-zinc-500");
+      btn.classList.add("bg-zinc-800", "text-white");
+      btn.classList.remove("text-zinc-400");
 
       currentOS = btn.getAttribute("data-os") || "macos";
       if (activeCmdSpan) activeCmdSpan.innerText = commands[currentOS];
@@ -66,7 +66,7 @@
   copyBtn?.addEventListener("click", async () => {
     await navigator.clipboard.writeText(commands[currentOS]);
     if (copyLabel) {
-      copyLabel.innerText = "Copied";
+      copyLabel.innerText = "Copied!";
       setTimeout(() => {
         copyLabel.innerText = "Copy";
       }, 1500);
